@@ -1,0 +1,43 @@
+ 
+****************************************
+Report : area
+Design : SPI
+Version: O-2018.06-SP4
+Date   : Mon Apr 24 21:41:32 2023
+****************************************
+
+Library(s) Used:
+
+    xmc9t_55ef_ss_1p08v_m40c (File: /backup-tools/PDK/XMC/XMC55_HP/STD/xmc55ef_hp/std_lib_20181213/hvt_std_lib_9t_20181213/lib/xmc9t_55ef_ss_1p08v_m40c.db)
+
+Number of ports:                           91
+Number of nets:                           385
+Number of cells:                          347
+Number of combinational cells:            245
+Number of sequential cells:               102
+Number of macros/black boxes:               0
+Number of buf/inv:                         37
+Number of references:                      59
+
+Combinational area:                587.160006
+Buf/Inv area:                       42.480002
+Noncombinational area:             880.200033
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                  1467.360039
+Total area:                       1467.360039
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  --------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-    Noncombi-  Black-
+                                  Total      Total    national  national   boxes   Design
+--------------------------------  ---------  -------  --------  ---------  ------  ---------
+SPI                               1467.3600    100.0  587.1600   880.2000  0.0000  SPI
+--------------------------------  ---------  -------  --------  ---------  ------  ---------
+Total                                                 587.1600   880.2000  0.0000
+
+1

@@ -1,0 +1,956 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys Design Compiler(R)
+// Version   : O-2018.06-SP4
+// Date      : Mon Apr 24 21:41:14 2023
+/////////////////////////////////////////////////////////////
+
+
+module SPI ( Clk, aRst_n, TXData, TXDataValid, RWType, RXData, RXDataValid, 
+        RXAddr, RXAddrValid, CS, SCK, MOSI, MISO, RXAck );
+  input [31:0] TXData;
+  output [31:0] RXData;
+  output [15:0] RXAddr;
+  input Clk, aRst_n, TXDataValid, CS, SCK, MOSI;
+  output RWType, RXDataValid, RXAddrValid, MISO, RXAck;
+  wire   N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15,
+         N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, N26, N27, N28, N29,
+         wCSPosedge, wCSNegedge, wSCKPosedge, wSCKNegedge, N30, N31, N32, N33,
+         N34, N35, N36, N37, N38, N39, N40, N41, N42, N43, N44, N45, N46, N47,
+         N48, N49, N50, N51, N52, N53, N54, N55, N56, N57, N58, N59, N60, N61,
+         N62, N63, N64, N65, N66, rCounterDone, N67, N68, N69, N70, N71, N72,
+         N73, N74, N75, N76, N77, N78, N79, N80, N81, N82, N83, N84, N85, N86,
+         N87, N88, N89, N90, N91, N92, N93, N94, N95, N96, N97, N98, N99, N100,
+         N101, N102, N103, N104, N105, N106, N107, N108, N109, N110, N111,
+         N112, N113, N114, N115, N116, N117, N118, N119, N120, N121, N122,
+         N123, N124, N125, N126, N127, N128, N129, N130, N131, N132, N133,
+         N134, N135, N136, N137, N138, N139, N140, N141, N142, N143, N144,
+         N145, N146, N147, N148, N149, N150, N151, N152, N153, N154, N155,
+         N156, N157, N158, N159, N160, N161, N162, N163, N164, N165, N166,
+         N167, N168, N169, N170, N171, N172, N173, N174, N175, N176, N177,
+         N178, N179, N180, N181, N182, N183, N184, N185, N186, N187, N188,
+         N189, N190, N191, N192, N193, N194, N195, N196, N197, N198, N199,
+         N200, N201, N202, N203, N204, N205, N206, N207, N208, N209, N210,
+         N211, N212, N213, N214, N215, N216, N217, N218, N219, N220, N221,
+         N222, N223, N224, N225, N226, N227, N228, N229, N230, N231, N232,
+         N233, N234, N235, N236, N237, N238, N239, N240, N241, N242, N243,
+         N244, N245, N246, N247, N248, N249, N250, N251, N252, N253, N254,
+         N255, N256, N257, N258, N259, N260, N261, N262, N263, N264, N265,
+         N266, N267, N268, N269, N270, N271, N272, N273, N274, N275, N276,
+         N277, N278, N279, N280, N281, N282, N283, N284, N285, N286, N287,
+         N288, N289, N290, N291, N292, N293, N294, N295, N296, N297, N298,
+         N299, N300, N301, N302, N303, N304, N305, N306, N307, N308, N309,
+         N310, N311, N312, N313, N314, N315, N316, N317, N318, N319, N320,
+         N321, N322, N323, N324, N325, N326, N327, N328, N329, N330, N331,
+         N332, N333, N334, N335, N336, N337, N338, N339, N340, N341, N342,
+         N343, N344, N345, N346, N347, N348, N349, N350, N351, N352, N353,
+         N354, N355, N356, N357, N358, N359, N360, N361, N362, N363, N364,
+         N365, N366, N367, N368, N369, N370, N371, N372, N373, N374, N375,
+         N376, N377, N378, N379, N380, N381, N382, N383, N384, N385, N386,
+         N387, N388, N389, N390, N391, N392, N393, N394, N395, N396, N397,
+         N398, N399, N400, N401, N402, N403, N404, N405, N406, N407, N408,
+         N409, N410, N411, N412, N413, N414, N415, N416, N417, N418, N419,
+         N420, N421, N422, N423, N424, N425, N426, N427, N428, N429, N430,
+         N431, N432, N433, N434, N435, N436, N437, N438, N439, N440, N441,
+         N442, N443, N444, N445, N446, N447, N448, N449, N450, N451, N452,
+         N453, N454, N455, N456, N457, N458, N459, N460, N461, N462, N463,
+         N464, N465, N466, N467, N468, N469, N470, N471, N472, N473, N474,
+         N475, N476, N477, N478, N479, N480, N481, N482, N483, N484, N485,
+         N486, N487, N488, N489, N490, N491, N492, N493, N494, N495, N496,
+         N497, N498, N499, N500, N501, N502, N503, N504, N505, N506, N507,
+         N508, N509, N510, N511, N512, N513, N514, N515, N516, N517, N518,
+         N519, N520, N521, N522, N523, N524, N525, N526, N527, N528, N529,
+         N530, N531, N532, N533, N534, N535, N536, N537, N538, N539, N540,
+         N541, N542, N543, N544, N545, N546, N547, N548, N549, N550, N551,
+         N552, N553, N554, N555, N556, N557, N558, N559, N560, N561;
+  wire   [1:0] rCS_f;
+  wire   [1:0] rSCK_f;
+  wire   [31:0] rTXData;
+  wire   [6:0] rCurState;
+  wire   [6:0] rNxtState;
+  wire   [4:0] rCounter;
+
+  \**SEQGEN**  \rCS_f_reg[1]  ( .clear(1'b0), .preset(N29), .next_state(
+        rCS_f[0]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rCS_f[1]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(1'b1) );
+  \**SEQGEN**  \rCS_f_reg[0]  ( .clear(1'b0), .preset(N29), .next_state(CS), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rCS_f[0]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(1'b1) );
+  \**SEQGEN**  \rSCK_f_reg[1]  ( .clear(N29), .preset(1'b0), .next_state(
+        rSCK_f[0]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rSCK_f[1]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(
+        1'b0), .synch_enable(1'b1) );
+  \**SEQGEN**  \rSCK_f_reg[0]  ( .clear(N29), .preset(1'b0), .next_state(SCK), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rSCK_f[0]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(1'b1) );
+  \**SEQGEN**  \rTXData_reg[31]  ( .clear(N29), .preset(1'b0), .next_state(N64), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[31]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[30]  ( .clear(N29), .preset(1'b0), .next_state(N63), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[30]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[29]  ( .clear(N29), .preset(1'b0), .next_state(N62), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[29]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[28]  ( .clear(N29), .preset(1'b0), .next_state(N61), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[28]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[27]  ( .clear(N29), .preset(1'b0), .next_state(N60), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[27]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[26]  ( .clear(N29), .preset(1'b0), .next_state(N59), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[26]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[25]  ( .clear(N29), .preset(1'b0), .next_state(N58), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[25]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[24]  ( .clear(N29), .preset(1'b0), .next_state(N57), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[24]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[23]  ( .clear(N29), .preset(1'b0), .next_state(N56), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[23]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[22]  ( .clear(N29), .preset(1'b0), .next_state(N55), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[22]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[21]  ( .clear(N29), .preset(1'b0), .next_state(N54), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[21]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[20]  ( .clear(N29), .preset(1'b0), .next_state(N53), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[20]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[19]  ( .clear(N29), .preset(1'b0), .next_state(N52), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[19]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[18]  ( .clear(N29), .preset(1'b0), .next_state(N51), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[18]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[17]  ( .clear(N29), .preset(1'b0), .next_state(N50), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[17]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[16]  ( .clear(N29), .preset(1'b0), .next_state(N49), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[16]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[15]  ( .clear(N29), .preset(1'b0), .next_state(N48), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[15]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[14]  ( .clear(N29), .preset(1'b0), .next_state(N47), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[14]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[13]  ( .clear(N29), .preset(1'b0), .next_state(N46), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[13]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[12]  ( .clear(N29), .preset(1'b0), .next_state(N45), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[12]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[11]  ( .clear(N29), .preset(1'b0), .next_state(N44), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[11]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[10]  ( .clear(N29), .preset(1'b0), .next_state(N43), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[10]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[9]  ( .clear(N29), .preset(1'b0), .next_state(N42), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[9]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[8]  ( .clear(N29), .preset(1'b0), .next_state(N41), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[8]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[7]  ( .clear(N29), .preset(1'b0), .next_state(N40), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[7]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[6]  ( .clear(N29), .preset(1'b0), .next_state(N39), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[6]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[5]  ( .clear(N29), .preset(1'b0), .next_state(N38), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[5]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[4]  ( .clear(N29), .preset(1'b0), .next_state(N37), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[4]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[3]  ( .clear(N29), .preset(1'b0), .next_state(N36), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[3]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[2]  ( .clear(N29), .preset(1'b0), .next_state(N35), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[2]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[1]  ( .clear(N29), .preset(1'b0), .next_state(N34), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[1]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rTXData_reg[0]  ( .clear(N29), .preset(1'b0), .next_state(N33), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rTXData[0]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N32) );
+  \**SEQGEN**  \rCurState_reg[6]  ( .clear(N29), .preset(1'b0), .next_state(
+        rNxtState[6]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rCurState[6]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(
+        1'b0), .synch_enable(1'b1) );
+  \**SEQGEN**  \rCurState_reg[5]  ( .clear(N29), .preset(1'b0), .next_state(
+        rNxtState[5]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rCurState[5]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(
+        1'b0), .synch_enable(1'b1) );
+  \**SEQGEN**  \rCurState_reg[4]  ( .clear(N29), .preset(1'b0), .next_state(
+        rNxtState[4]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rCurState[4]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(
+        1'b0), .synch_enable(1'b1) );
+  \**SEQGEN**  \rCurState_reg[3]  ( .clear(N29), .preset(1'b0), .next_state(
+        rNxtState[3]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rCurState[3]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(
+        1'b0), .synch_enable(1'b1) );
+  \**SEQGEN**  \rCurState_reg[2]  ( .clear(N29), .preset(1'b0), .next_state(
+        rNxtState[2]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rCurState[2]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(
+        1'b0), .synch_enable(1'b1) );
+  \**SEQGEN**  \rCurState_reg[1]  ( .clear(N29), .preset(1'b0), .next_state(
+        rNxtState[1]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rCurState[1]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(
+        1'b0), .synch_enable(1'b1) );
+  \**SEQGEN**  \rCurState_reg[0]  ( .clear(1'b0), .preset(N29), .next_state(
+        rNxtState[0]), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(
+        rCurState[0]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(
+        1'b0), .synch_enable(1'b1) );
+  GTECH_OR2 C186 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N68) );
+  GTECH_OR2 C187 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N69) );
+  GTECH_OR2 C188 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N70) );
+  GTECH_OR2 C189 ( .A(N68), .B(N69), .Z(N71) );
+  GTECH_OR2 C190 ( .A(N70), .B(N67), .Z(N72) );
+  GTECH_OR2 C191 ( .A(N71), .B(N72), .Z(N73) );
+  GTECH_OR2 C194 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N76) );
+  GTECH_OR2 C195 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N77) );
+  GTECH_OR2 C196 ( .A(rCurState[2]), .B(N75), .Z(N78) );
+  GTECH_OR2 C197 ( .A(N76), .B(N77), .Z(N79) );
+  GTECH_OR2 C198 ( .A(N78), .B(rCurState[0]), .Z(N80) );
+  GTECH_OR2 C199 ( .A(N79), .B(N80), .Z(N81) );
+  GTECH_OR2 C202 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N84) );
+  GTECH_OR2 C203 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N85) );
+  GTECH_OR2 C204 ( .A(N83), .B(rCurState[1]), .Z(N86) );
+  GTECH_OR2 C205 ( .A(N84), .B(N85), .Z(N87) );
+  GTECH_OR2 C206 ( .A(N86), .B(rCurState[0]), .Z(N88) );
+  GTECH_OR2 C207 ( .A(N87), .B(N88), .Z(N89) );
+  GTECH_OR2 C210 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N92) );
+  GTECH_OR2 C211 ( .A(rCurState[4]), .B(N91), .Z(N93) );
+  GTECH_OR2 C212 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N94) );
+  GTECH_OR2 C213 ( .A(N92), .B(N93), .Z(N95) );
+  GTECH_OR2 C214 ( .A(N94), .B(rCurState[0]), .Z(N96) );
+  GTECH_OR2 C215 ( .A(N95), .B(N96), .Z(N97) );
+  GTECH_OR2 C218 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N100) );
+  GTECH_OR2 C219 ( .A(N99), .B(rCurState[3]), .Z(N101) );
+  GTECH_OR2 C220 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N102) );
+  GTECH_OR2 C221 ( .A(N100), .B(N101), .Z(N103) );
+  GTECH_OR2 C222 ( .A(N102), .B(rCurState[0]), .Z(N104) );
+  GTECH_OR2 C223 ( .A(N103), .B(N104), .Z(N105) );
+  GTECH_OR2 C226 ( .A(rCurState[6]), .B(N107), .Z(N108) );
+  GTECH_OR2 C227 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N109) );
+  GTECH_OR2 C228 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N110) );
+  GTECH_OR2 C229 ( .A(N108), .B(N109), .Z(N111) );
+  GTECH_OR2 C230 ( .A(N110), .B(rCurState[0]), .Z(N112) );
+  GTECH_OR2 C231 ( .A(N111), .B(N112), .Z(N113) );
+  GTECH_OR2 C234 ( .A(N115), .B(rCurState[5]), .Z(N116) );
+  GTECH_OR2 C235 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N117) );
+  GTECH_OR2 C236 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N118) );
+  GTECH_OR2 C237 ( .A(N116), .B(N117), .Z(N119) );
+  GTECH_OR2 C238 ( .A(N118), .B(rCurState[0]), .Z(N120) );
+  GTECH_OR2 C239 ( .A(N119), .B(N120), .Z(N121) );
+  GTECH_OR2 C409 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N195) );
+  GTECH_OR2 C410 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N196) );
+  GTECH_OR2 C411 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N197) );
+  GTECH_OR2 C412 ( .A(N195), .B(N196), .Z(N198) );
+  GTECH_OR2 C413 ( .A(N197), .B(N67), .Z(N199) );
+  GTECH_OR2 C414 ( .A(N198), .B(N199), .Z(N200) );
+  GTECH_OR2 C417 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N202) );
+  GTECH_OR2 C418 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N203) );
+  GTECH_OR2 C419 ( .A(rCurState[2]), .B(N75), .Z(N204) );
+  GTECH_OR2 C420 ( .A(N202), .B(N203), .Z(N205) );
+  GTECH_OR2 C421 ( .A(N204), .B(rCurState[0]), .Z(N206) );
+  GTECH_OR2 C422 ( .A(N205), .B(N206), .Z(N207) );
+  GTECH_OR2 C425 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N209) );
+  GTECH_OR2 C426 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N210) );
+  GTECH_OR2 C427 ( .A(N83), .B(rCurState[1]), .Z(N211) );
+  GTECH_OR2 C428 ( .A(N209), .B(N210), .Z(N212) );
+  GTECH_OR2 C429 ( .A(N211), .B(rCurState[0]), .Z(N213) );
+  GTECH_OR2 C430 ( .A(N212), .B(N213), .Z(N214) );
+  GTECH_OR2 C433 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N216) );
+  GTECH_OR2 C434 ( .A(rCurState[4]), .B(N91), .Z(N217) );
+  GTECH_OR2 C435 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N218) );
+  GTECH_OR2 C436 ( .A(N216), .B(N217), .Z(N219) );
+  GTECH_OR2 C437 ( .A(N218), .B(rCurState[0]), .Z(N220) );
+  GTECH_OR2 C438 ( .A(N219), .B(N220), .Z(N221) );
+  GTECH_OR2 C441 ( .A(rCurState[6]), .B(rCurState[5]), .Z(N223) );
+  GTECH_OR2 C442 ( .A(N99), .B(rCurState[3]), .Z(N224) );
+  GTECH_OR2 C443 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N225) );
+  GTECH_OR2 C444 ( .A(N223), .B(N224), .Z(N226) );
+  GTECH_OR2 C445 ( .A(N225), .B(rCurState[0]), .Z(N227) );
+  GTECH_OR2 C446 ( .A(N226), .B(N227), .Z(N228) );
+  GTECH_OR2 C449 ( .A(rCurState[6]), .B(N107), .Z(N230) );
+  GTECH_OR2 C450 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N231) );
+  GTECH_OR2 C451 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N232) );
+  GTECH_OR2 C452 ( .A(N230), .B(N231), .Z(N233) );
+  GTECH_OR2 C453 ( .A(N232), .B(rCurState[0]), .Z(N234) );
+  GTECH_OR2 C454 ( .A(N233), .B(N234), .Z(N235) );
+  GTECH_OR2 C457 ( .A(N115), .B(rCurState[5]), .Z(N237) );
+  GTECH_OR2 C458 ( .A(rCurState[4]), .B(rCurState[3]), .Z(N238) );
+  GTECH_OR2 C459 ( .A(rCurState[2]), .B(rCurState[1]), .Z(N239) );
+  GTECH_OR2 C460 ( .A(N237), .B(N238), .Z(N240) );
+  GTECH_OR2 C461 ( .A(N239), .B(rCurState[0]), .Z(N241) );
+  GTECH_OR2 C462 ( .A(N240), .B(N241), .Z(N242) );
+  \**SEQGEN**  rMISO_reg ( .clear(N29), .preset(1'b0), .next_state(N413), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(MISO), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N412) );
+  \**SEQGEN**  \rRXAddr_reg[15]  ( .clear(N29), .preset(1'b0), .next_state(
+        N363), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[15]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[14]  ( .clear(N29), .preset(1'b0), .next_state(
+        N379), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[14]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[13]  ( .clear(N29), .preset(1'b0), .next_state(
+        N378), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[13]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[12]  ( .clear(N29), .preset(1'b0), .next_state(
+        N377), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[12]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[11]  ( .clear(N29), .preset(1'b0), .next_state(
+        N376), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[11]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[10]  ( .clear(N29), .preset(1'b0), .next_state(
+        N375), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[10]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[9]  ( .clear(N29), .preset(1'b0), .next_state(N374), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[9]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[8]  ( .clear(N29), .preset(1'b0), .next_state(N373), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[8]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[7]  ( .clear(N29), .preset(1'b0), .next_state(N372), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[7]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[6]  ( .clear(N29), .preset(1'b0), .next_state(N371), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[6]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[5]  ( .clear(N29), .preset(1'b0), .next_state(N370), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[5]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[4]  ( .clear(N29), .preset(1'b0), .next_state(N369), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[4]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[3]  ( .clear(N29), .preset(1'b0), .next_state(N368), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[3]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[2]  ( .clear(N29), .preset(1'b0), .next_state(N367), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[2]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[1]  ( .clear(N29), .preset(1'b0), .next_state(N366), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[1]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rRXAddr_reg[0]  ( .clear(N29), .preset(1'b0), .next_state(N365), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddr[0]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N364) );
+  \**SEQGEN**  \rCounter_reg[4]  ( .clear(N29), .preset(1'b0), .next_state(
+        N360), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rCounter[4]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(
+        N361) );
+  \**SEQGEN**  \rCounter_reg[3]  ( .clear(N29), .preset(1'b0), .next_state(
+        N359), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rCounter[3]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(
+        N361) );
+  \**SEQGEN**  \rCounter_reg[2]  ( .clear(N29), .preset(1'b0), .next_state(
+        N358), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rCounter[2]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(
+        N361) );
+  \**SEQGEN**  \rCounter_reg[1]  ( .clear(N29), .preset(1'b0), .next_state(
+        N357), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rCounter[1]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(
+        N361) );
+  \**SEQGEN**  \rCounter_reg[0]  ( .clear(N29), .preset(1'b0), .next_state(
+        N356), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rCounter[0]), .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), .synch_enable(
+        N361) );
+  \**SEQGEN**  rRWType_reg ( .clear(N29), .preset(1'b0), .next_state(N363), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RWType), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N362) );
+  \**SEQGEN**  \rRXData_reg[31]  ( .clear(N29), .preset(1'b0), .next_state(
+        N363), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[31]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[30]  ( .clear(N29), .preset(1'b0), .next_state(
+        N411), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[30]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[29]  ( .clear(N29), .preset(1'b0), .next_state(
+        N410), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[29]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[28]  ( .clear(N29), .preset(1'b0), .next_state(
+        N409), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[28]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[27]  ( .clear(N29), .preset(1'b0), .next_state(
+        N408), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[27]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[26]  ( .clear(N29), .preset(1'b0), .next_state(
+        N407), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[26]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[25]  ( .clear(N29), .preset(1'b0), .next_state(
+        N406), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[25]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[24]  ( .clear(N29), .preset(1'b0), .next_state(
+        N405), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[24]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[23]  ( .clear(N29), .preset(1'b0), .next_state(
+        N404), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[23]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[22]  ( .clear(N29), .preset(1'b0), .next_state(
+        N403), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[22]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[21]  ( .clear(N29), .preset(1'b0), .next_state(
+        N402), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[21]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[20]  ( .clear(N29), .preset(1'b0), .next_state(
+        N401), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[20]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[19]  ( .clear(N29), .preset(1'b0), .next_state(
+        N400), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[19]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[18]  ( .clear(N29), .preset(1'b0), .next_state(
+        N399), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[18]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[17]  ( .clear(N29), .preset(1'b0), .next_state(
+        N398), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[17]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[16]  ( .clear(N29), .preset(1'b0), .next_state(
+        N397), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[16]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[15]  ( .clear(N29), .preset(1'b0), .next_state(
+        N396), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[15]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[14]  ( .clear(N29), .preset(1'b0), .next_state(
+        N395), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[14]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[13]  ( .clear(N29), .preset(1'b0), .next_state(
+        N394), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[13]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[12]  ( .clear(N29), .preset(1'b0), .next_state(
+        N393), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[12]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[11]  ( .clear(N29), .preset(1'b0), .next_state(
+        N392), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[11]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[10]  ( .clear(N29), .preset(1'b0), .next_state(
+        N391), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[10]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[9]  ( .clear(N29), .preset(1'b0), .next_state(N390), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[9]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[8]  ( .clear(N29), .preset(1'b0), .next_state(N389), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[8]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[7]  ( .clear(N29), .preset(1'b0), .next_state(N388), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[7]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[6]  ( .clear(N29), .preset(1'b0), .next_state(N387), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[6]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[5]  ( .clear(N29), .preset(1'b0), .next_state(N386), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[5]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[4]  ( .clear(N29), .preset(1'b0), .next_state(N385), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[4]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[3]  ( .clear(N29), .preset(1'b0), .next_state(N384), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[3]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[2]  ( .clear(N29), .preset(1'b0), .next_state(N383), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[2]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[1]  ( .clear(N29), .preset(1'b0), .next_state(N382), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[1]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  \**SEQGEN**  \rRXData_reg[0]  ( .clear(N29), .preset(1'b0), .next_state(N381), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXData[0]), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N380) );
+  GTECH_OR2 C1049 ( .A(rNxtState[6]), .B(rNxtState[5]), .Z(N423) );
+  GTECH_OR2 C1050 ( .A(rNxtState[4]), .B(rNxtState[3]), .Z(N424) );
+  GTECH_OR2 C1051 ( .A(rNxtState[2]), .B(rNxtState[1]), .Z(N425) );
+  GTECH_OR2 C1052 ( .A(N423), .B(N424), .Z(N426) );
+  GTECH_OR2 C1053 ( .A(N425), .B(N422), .Z(N427) );
+  GTECH_OR2 C1054 ( .A(N426), .B(N427), .Z(N428) );
+  GTECH_OR2 C1057 ( .A(rNxtState[6]), .B(rNxtState[5]), .Z(N431) );
+  GTECH_OR2 C1058 ( .A(rNxtState[4]), .B(rNxtState[3]), .Z(N432) );
+  GTECH_OR2 C1059 ( .A(rNxtState[2]), .B(N430), .Z(N433) );
+  GTECH_OR2 C1060 ( .A(N431), .B(N432), .Z(N434) );
+  GTECH_OR2 C1061 ( .A(N433), .B(rNxtState[0]), .Z(N435) );
+  GTECH_OR2 C1062 ( .A(N434), .B(N435), .Z(N436) );
+  GTECH_OR2 C1065 ( .A(rNxtState[6]), .B(rNxtState[5]), .Z(N439) );
+  GTECH_OR2 C1066 ( .A(rNxtState[4]), .B(rNxtState[3]), .Z(N440) );
+  GTECH_OR2 C1067 ( .A(N438), .B(rNxtState[1]), .Z(N441) );
+  GTECH_OR2 C1068 ( .A(N439), .B(N440), .Z(N442) );
+  GTECH_OR2 C1069 ( .A(N441), .B(rNxtState[0]), .Z(N443) );
+  GTECH_OR2 C1070 ( .A(N442), .B(N443), .Z(N444) );
+  GTECH_OR2 C1073 ( .A(rNxtState[6]), .B(rNxtState[5]), .Z(N446) );
+  GTECH_OR2 C1074 ( .A(rNxtState[4]), .B(N527), .Z(N447) );
+  GTECH_OR2 C1075 ( .A(rNxtState[2]), .B(rNxtState[1]), .Z(N448) );
+  GTECH_OR2 C1076 ( .A(N446), .B(N447), .Z(N449) );
+  GTECH_OR2 C1077 ( .A(N448), .B(rNxtState[0]), .Z(N450) );
+  GTECH_OR2 C1078 ( .A(N449), .B(N450), .Z(N451) );
+  GTECH_OR2 C1081 ( .A(rNxtState[6]), .B(rNxtState[5]), .Z(N454) );
+  GTECH_OR2 C1082 ( .A(N453), .B(rNxtState[3]), .Z(N455) );
+  GTECH_OR2 C1083 ( .A(rNxtState[2]), .B(rNxtState[1]), .Z(N456) );
+  GTECH_OR2 C1084 ( .A(N454), .B(N455), .Z(N457) );
+  GTECH_OR2 C1085 ( .A(N456), .B(rNxtState[0]), .Z(N458) );
+  GTECH_OR2 C1086 ( .A(N457), .B(N458), .Z(N459) );
+  GTECH_OR2 C1089 ( .A(rNxtState[6]), .B(N461), .Z(N462) );
+  GTECH_OR2 C1090 ( .A(rNxtState[4]), .B(rNxtState[3]), .Z(N463) );
+  GTECH_OR2 C1091 ( .A(rNxtState[2]), .B(rNxtState[1]), .Z(N464) );
+  GTECH_OR2 C1092 ( .A(N462), .B(N463), .Z(N465) );
+  GTECH_OR2 C1093 ( .A(N464), .B(rNxtState[0]), .Z(N466) );
+  GTECH_OR2 C1094 ( .A(N465), .B(N466), .Z(N467) );
+  GTECH_OR2 C1097 ( .A(N535), .B(rNxtState[5]), .Z(N469) );
+  GTECH_OR2 C1098 ( .A(rNxtState[4]), .B(rNxtState[3]), .Z(N470) );
+  GTECH_OR2 C1099 ( .A(rNxtState[2]), .B(rNxtState[1]), .Z(N471) );
+  GTECH_OR2 C1100 ( .A(N469), .B(N470), .Z(N472) );
+  GTECH_OR2 C1101 ( .A(N471), .B(rNxtState[0]), .Z(N473) );
+  GTECH_OR2 C1102 ( .A(N472), .B(N473), .Z(N474) );
+  EQ_UNS_OP eq_284 ( .A({N489, N488, N487, N486, N485, N484}), .B({1'b1, 1'b0, 
+        1'b0, 1'b0, 1'b0}), .Z(N490) );
+  EQ_UNS_OP eq_301 ( .A({N498, N497, N496, N495, N494, N493}), .B({1'b1, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0}), .Z(N499) );
+  EQ_UNS_OP eq_310 ( .A({N506, N505, N504, N503, N502, N501}), .B({1'b1, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0}), .Z(N507) );
+  \**SEQGEN**  rCounterDone_reg ( .clear(N29), .preset(1'b0), .next_state(N517), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(rCounterDone), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N516) );
+  \**SEQGEN**  rRXDataValid_reg ( .clear(N29), .preset(1'b0), .next_state(N519), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXDataValid), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N518) );
+  \**SEQGEN**  rRXAddrValid_reg ( .clear(N29), .preset(1'b0), .next_state(N521), .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAddrValid), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(N520) );
+  \**SEQGEN**  rRXAck_reg ( .clear(N29), .preset(1'b0), .next_state(N525), 
+        .clocked_on(Clk), .data_in(1'b0), .enable(1'b0), .Q(RXAck), 
+        .synch_clear(1'b0), .synch_preset(1'b0), .synch_toggle(1'b0), 
+        .synch_enable(1'b1) );
+  GTECH_NOT I_0 ( .A(rNxtState[3]), .Z(N527) );
+  GTECH_OR2 C1209 ( .A(rNxtState[5]), .B(rNxtState[6]), .Z(N528) );
+  GTECH_OR2 C1210 ( .A(rNxtState[4]), .B(N528), .Z(N529) );
+  GTECH_OR2 C1211 ( .A(N527), .B(N529), .Z(N530) );
+  GTECH_OR2 C1212 ( .A(rNxtState[2]), .B(N530), .Z(N531) );
+  GTECH_OR2 C1213 ( .A(rNxtState[1]), .B(N531), .Z(N532) );
+  GTECH_OR2 C1214 ( .A(rNxtState[0]), .B(N532), .Z(N533) );
+  GTECH_NOT I_1 ( .A(N533), .Z(N534) );
+  GTECH_NOT I_2 ( .A(rNxtState[6]), .Z(N535) );
+  GTECH_OR2 C1217 ( .A(rNxtState[5]), .B(N535), .Z(N536) );
+  GTECH_OR2 C1218 ( .A(rNxtState[4]), .B(N536), .Z(N537) );
+  GTECH_OR2 C1219 ( .A(rNxtState[3]), .B(N537), .Z(N538) );
+  GTECH_OR2 C1220 ( .A(rNxtState[2]), .B(N538), .Z(N539) );
+  GTECH_OR2 C1221 ( .A(rNxtState[1]), .B(N539), .Z(N540) );
+  GTECH_OR2 C1222 ( .A(rNxtState[0]), .B(N540), .Z(N541) );
+  GTECH_NOT I_3 ( .A(N541), .Z(N542) );
+  GTECH_OR2 C1224 ( .A(rCounter[3]), .B(rCounter[4]), .Z(N543) );
+  GTECH_OR2 C1225 ( .A(rCounter[2]), .B(N543), .Z(N544) );
+  GTECH_OR2 C1226 ( .A(rCounter[1]), .B(N544), .Z(N545) );
+  GTECH_OR2 C1227 ( .A(rCounter[0]), .B(N545), .Z(N546) );
+  GTECH_NOT I_4 ( .A(N546), .Z(N547) );
+  GTECH_OR2 C1229 ( .A(rCounter[3]), .B(rCounter[4]), .Z(N548) );
+  GTECH_OR2 C1230 ( .A(rCounter[2]), .B(N548), .Z(N549) );
+  GTECH_OR2 C1231 ( .A(rCounter[1]), .B(N549), .Z(N550) );
+  GTECH_OR2 C1232 ( .A(rCounter[0]), .B(N550), .Z(N551) );
+  GTECH_NOT I_5 ( .A(N551), .Z(N552) );
+  GTECH_OR2 C1234 ( .A(rCounter[3]), .B(rCounter[4]), .Z(N553) );
+  GTECH_OR2 C1235 ( .A(rCounter[2]), .B(N553), .Z(N554) );
+  GTECH_OR2 C1236 ( .A(rCounter[1]), .B(N554), .Z(N555) );
+  GTECH_OR2 C1237 ( .A(rCounter[0]), .B(N555), .Z(N556) );
+  GTECH_NOT I_6 ( .A(N556), .Z(N557) );
+  ADD_UNS_OP add_243 ( .A(rCounter), .B(1'b1), .Z({N322, N321, N320, N319, 
+        N318}) );
+  ADD_UNS_OP add_251 ( .A(rCounter), .B(1'b1), .Z({N339, N338, N337, N336, 
+        N335}) );
+  ADD_UNS_OP add_228 ( .A(rCounter), .B(1'b1), .Z({N291, N290, N289, N288, 
+        N287}) );
+  ADD_UNS_OP add_235 ( .A(rCounter), .B(1'b1), .Z({N306, N305, N304, N303, 
+        N302}) );
+  ADD_UNS_OP add_212 ( .A(rCounter), .B(1'b1), .Z({N259, N258, N257, N256, 
+        N255}) );
+  ADD_UNS_OP add_220 ( .A(rCounter), .B(1'b1), .Z({N275, N274, N273, N272, 
+        N271}) );
+  ADD_UNS_OP add_284 ( .A(rCounter), .B(1'b1), .Z({N489, N488, N487, N486, 
+        N485, N484}) );
+  ADD_UNS_OP add_301 ( .A(rCounter), .B(1'b1), .Z({N498, N497, N496, N495, 
+        N494, N493}) );
+  ADD_UNS_OP add_310 ( .A(rCounter), .B(1'b1), .Z({N506, N505, N504, N503, 
+        N502, N501}) );
+  SELECT_OP C1274 ( .DATA1(1'b1), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N0), 
+        .CONTROL2(N66), .CONTROL3(N31), .Z(N32) );
+  GTECH_BUF B_0 ( .A(wCSPosedge), .Z(N0) );
+  SELECT_OP C1275 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2(TXData), .CONTROL1(N0), .CONTROL2(N66), .Z({N64, N63, N62, N61, N60, 
+        N59, N58, N57, N56, N55, N54, N53, N52, N51, N50, N49, N48, N47, N46, 
+        N45, N44, N43, N42, N41, N40, N39, N38, N37, N36, N35, N34, N33}) );
+  SELECT_OP C1276 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1}), 
+        .DATA2({1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0}), .DATA3(rCurState), 
+        .CONTROL1(N0), .CONTROL2(N186), .CONTROL3(N132), .Z({N139, N138, N137, 
+        N136, N135, N134, N133}) );
+  SELECT_OP C1277 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1}), 
+        .DATA2({1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0}), .DATA3(rCurState), 
+        .CONTROL1(N0), .CONTROL2(N187), .CONTROL3(N141), .Z({N148, N147, N146, 
+        N145, N144, N143, N142}) );
+  SELECT_OP C1278 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1}), 
+        .DATA2({1'b0, N151, RWType, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA3(rCurState), .CONTROL1(N0), .CONTROL2(N188), .CONTROL3(N150), .Z({N158, N157, N156, N155, 
+        N154, N153, N152}) );
+  SELECT_OP C1279 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1}), 
+        .DATA2({1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA3(rCurState), 
+        .CONTROL1(N0), .CONTROL2(N189), .CONTROL3(N160), .Z({N167, N166, N165, 
+        N164, N163, N162, N161}) );
+  SELECT_OP C1280 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1}), 
+        .DATA2({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1}), .DATA3(rCurState), 
+        .CONTROL1(N0), .CONTROL2(N190), .CONTROL3(N169), .Z({N176, N175, N174, 
+        N173, N172, N171, N170}) );
+  SELECT_OP C1281 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1}), 
+        .DATA2({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1}), .DATA3(rCurState), 
+        .CONTROL1(N0), .CONTROL2(N191), .CONTROL3(N178), .Z({N185, N184, N183, 
+        N182, N181, N180, N179}) );
+  SELECT_OP C1282 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, wCSNegedge, N130}), 
+        .DATA2({N139, N138, N137, N136, N135, N134, N133}), .DATA3({N148, N147, 
+        N146, N145, N144, N143, N142}), .DATA4({N158, N157, N156, N155, N154, 
+        N153, N152}), .DATA5({N167, N166, N165, N164, N163, N162, N161}), 
+        .DATA6({N176, N175, N174, N173, N172, N171, N170}), .DATA7({N185, N184, 
+        N183, N182, N181, N180, N179}), .DATA8(rCurState), .CONTROL1(N1), 
+        .CONTROL2(N2), .CONTROL3(N3), .CONTROL4(N4), .CONTROL5(N5), .CONTROL6(
+        N6), .CONTROL7(N7), .CONTROL8(N129), .Z(rNxtState) );
+  GTECH_BUF B_1 ( .A(N74), .Z(N1) );
+  GTECH_BUF B_2 ( .A(N82), .Z(N2) );
+  GTECH_BUF B_3 ( .A(N90), .Z(N3) );
+  GTECH_BUF B_4 ( .A(N98), .Z(N4) );
+  GTECH_BUF B_5 ( .A(N106), .Z(N5) );
+  GTECH_BUF B_6 ( .A(N114), .Z(N6) );
+  GTECH_BUF B_7 ( .A(N122), .Z(N7) );
+  SELECT_OP C1283 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N259, N258, 
+        N257, N256, N255}), .CONTROL1(N8), .CONTROL2(N415), .Z({N264, N263, 
+        N262, N261, N260}) );
+  GTECH_BUF B_8 ( .A(rCounterDone), .Z(N8) );
+  SELECT_OP C1284 ( .DATA1(1'b1), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N415), .CONTROL3(N253), .Z(N265) );
+  SELECT_OP C1285 ( .DATA1(1'b0), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N415), .CONTROL3(N253), .Z(N266) );
+  SELECT_OP C1286 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N275, N274, 
+        N273, N272, N271}), .CONTROL1(N8), .CONTROL2(N416), .Z({N280, N279, 
+        N278, N277, N276}) );
+  SELECT_OP C1287 ( .DATA1(1'b1), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N416), .CONTROL3(N269), .Z(N281) );
+  SELECT_OP C1288 ( .DATA1(1'b0), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N416), .CONTROL3(N269), .Z(N282) );
+  SELECT_OP C1289 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N291, N290, 
+        N289, N288, N287}), .CONTROL1(N8), .CONTROL2(N417), .Z({N296, N295, 
+        N294, N293, N292}) );
+  SELECT_OP C1290 ( .DATA1(1'b1), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N417), .CONTROL3(N285), .Z(N297) );
+  SELECT_OP C1291 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N306, N305, 
+        N304, N303, N302}), .CONTROL1(N8), .CONTROL2(N418), .Z({N311, N310, 
+        N309, N308, N307}) );
+  SELECT_OP C1292 ( .DATA1(1'b1), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N418), .CONTROL3(N300), .Z(N312) );
+  SELECT_OP C1293 ( .DATA1(1'b0), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N418), .CONTROL3(N300), .Z(N313) );
+  SELECT_OP C1294 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N322, N321, 
+        N320, N319, N318}), .CONTROL1(N8), .CONTROL2(N419), .Z({N328, N327, 
+        N326, N325, N324}) );
+  SELECT_OP C1295 ( .DATA1(1'b1), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N419), .CONTROL3(N316), .Z(N329) );
+  SELECT_OP C1296 ( .DATA1(1'b0), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N419), .CONTROL3(N316), .Z(N330) );
+  SELECT_OP C1297 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N339, N338, 
+        N337, N336, N335}), .CONTROL1(N8), .CONTROL2(N420), .Z({N344, N343, 
+        N342, N341, N340}) );
+  SELECT_OP C1298 ( .DATA1(1'b1), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N8), 
+        .CONTROL2(N420), .CONTROL3(N333), .Z(N345) );
+  SELECT_OP C1299 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N264, N263, 
+        N262, N261, N260}), .DATA3({N280, N279, N278, N277, N276}), .DATA4({
+        N296, N295, N294, N293, N292}), .DATA5({N311, N310, N309, N308, N307}), 
+        .DATA6({N328, N327, N326, N325, N324}), .DATA7({N344, N343, N342, N341, 
+        N340}), .CONTROL1(N9), .CONTROL2(N10), .CONTROL3(N11), .CONTROL4(N12), 
+        .CONTROL5(N13), .CONTROL6(N14), .CONTROL7(N15), .Z({N350, N349, N348, 
+        N347, N346}) );
+  GTECH_BUF B_9 ( .A(N201), .Z(N9) );
+  GTECH_BUF B_10 ( .A(N208), .Z(N10) );
+  GTECH_BUF B_11 ( .A(N215), .Z(N11) );
+  GTECH_BUF B_12 ( .A(N222), .Z(N12) );
+  GTECH_BUF B_13 ( .A(N229), .Z(N13) );
+  GTECH_BUF B_14 ( .A(N236), .Z(N14) );
+  GTECH_BUF B_15 ( .A(N243), .Z(N15) );
+  SELECT_OP C1300 ( .DATA1(1'b1), .DATA2(N265), .DATA3(N281), .DATA4(N297), 
+        .DATA5(N312), .DATA6(N329), .DATA7(N345), .DATA8(1'b0), .CONTROL1(N9), 
+        .CONTROL2(N10), .CONTROL3(N11), .CONTROL4(N12), .CONTROL5(N13), 
+        .CONTROL6(N14), .CONTROL7(N15), .CONTROL8(N250), .Z(N351) );
+  SELECT_OP C1301 ( .DATA1(1'b0), .DATA2(N266), .DATA3(1'b0), .DATA4(1'b0), 
+        .DATA5(1'b0), .DATA6(1'b0), .DATA7(1'b0), .DATA8(1'b0), .CONTROL1(N9), 
+        .CONTROL2(N10), .CONTROL3(N11), .CONTROL4(N12), .CONTROL5(N13), 
+        .CONTROL6(N14), .CONTROL7(N15), .CONTROL8(N250), .Z(N352) );
+  SELECT_OP C1302 ( .DATA1(1'b0), .DATA2(1'b0), .DATA3(N282), .DATA4(1'b0), 
+        .DATA5(1'b0), .DATA6(1'b0), .DATA7(1'b0), .DATA8(1'b0), .CONTROL1(N9), 
+        .CONTROL2(N10), .CONTROL3(N11), .CONTROL4(N12), .CONTROL5(N13), 
+        .CONTROL6(N14), .CONTROL7(N15), .CONTROL8(N250), .Z(N353) );
+  SELECT_OP C1303 ( .DATA1(1'b0), .DATA2(1'b0), .DATA3(1'b0), .DATA4(1'b0), 
+        .DATA5(N313), .DATA6(1'b0), .DATA7(1'b0), .DATA8(1'b0), .CONTROL1(N9), 
+        .CONTROL2(N10), .CONTROL3(N11), .CONTROL4(N12), .CONTROL5(N13), 
+        .CONTROL6(N14), .CONTROL7(N15), .CONTROL8(N250), .Z(N354) );
+  SELECT_OP C1304 ( .DATA1(1'b0), .DATA2(1'b0), .DATA3(1'b0), .DATA4(1'b0), 
+        .DATA5(1'b0), .DATA6(N330), .DATA7(1'b0), .DATA8(1'b0), .CONTROL1(N9), 
+        .CONTROL2(N10), .CONTROL3(N11), .CONTROL4(N12), .CONTROL5(N13), 
+        .CONTROL6(N14), .CONTROL7(N15), .CONTROL8(N250), .Z(N355) );
+  SELECT_OP C1305 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2({N350, N349, 
+        N348, N347, N346}), .CONTROL1(N0), .CONTROL2(N16), .Z({N360, N359, 
+        N358, N357, N356}) );
+  GTECH_BUF B_16 ( .A(N193), .Z(N16) );
+  SELECT_OP C1306 ( .DATA1(1'b1), .DATA2(N351), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N361) );
+  SELECT_OP C1307 ( .DATA1(1'b1), .DATA2(N352), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N362) );
+  SELECT_OP C1308 ( .DATA1(1'b0), .DATA2(MOSI), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N363) );
+  SELECT_OP C1309 ( .DATA1(1'b1), .DATA2(N353), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N364) );
+  SELECT_OP C1310 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .DATA2(RXAddr[15:1]), 
+        .CONTROL1(N0), .CONTROL2(N16), .Z({N379, N378, N377, N376, N375, N374, 
+        N373, N372, N371, N370, N369, N368, N367, N366, N365}) );
+  SELECT_OP C1311 ( .DATA1(1'b1), .DATA2(N354), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N380) );
+  SELECT_OP C1312 ( .DATA1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), 
+        .DATA2(RXData[31:1]), .CONTROL1(N0), .CONTROL2(N16), .Z({N411, N410, 
+        N409, N408, N407, N406, N405, N404, N403, N402, N401, N400, N399, N398, 
+        N397, N396, N395, N394, N393, N392, N391, N390, N389, N388, N387, N386, 
+        N385, N384, N383, N382, N381}) );
+  SELECT_OP C1313 ( .DATA1(1'b1), .DATA2(N355), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N412) );
+  SELECT_OP C1314 ( .DATA1(1'b0), .DATA2(N323), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N413) );
+  SELECT_OP C1315 ( .DATA1(1'b1), .DATA2(1'b1), .DATA3(1'b1), .DATA4(1'b1), 
+        .DATA5(1'b1), .DATA6(1'b1), .DATA7(1'b1), .DATA8(1'b0), .CONTROL1(N17), 
+        .CONTROL2(N18), .CONTROL3(N19), .CONTROL4(N20), .CONTROL5(N21), 
+        .CONTROL6(N22), .CONTROL7(N23), .CONTROL8(N482), .Z(N510) );
+  GTECH_BUF B_17 ( .A(N429), .Z(N17) );
+  GTECH_BUF B_18 ( .A(N437), .Z(N18) );
+  GTECH_BUF B_19 ( .A(N445), .Z(N19) );
+  GTECH_BUF B_20 ( .A(N452), .Z(N20) );
+  GTECH_BUF B_21 ( .A(N460), .Z(N21) );
+  GTECH_BUF B_22 ( .A(N468), .Z(N22) );
+  GTECH_BUF B_23 ( .A(N475), .Z(N23) );
+  SELECT_OP C1316 ( .DATA1(1'b0), .DATA2(N483), .DATA3(N491), .DATA4(N492), 
+        .DATA5(N500), .DATA6(N508), .DATA7(N509), .CONTROL1(N17), .CONTROL2(
+        N18), .CONTROL3(N19), .CONTROL4(N20), .CONTROL5(N21), .CONTROL6(N22), 
+        .CONTROL7(N23), .Z(N511) );
+  SELECT_OP C1317 ( .DATA1(1'b1), .DATA2(1'b0), .DATA3(1'b0), .DATA4(1'b0), 
+        .DATA5(1'b1), .DATA6(1'b0), .DATA7(1'b0), .DATA8(1'b0), .CONTROL1(N17), 
+        .CONTROL2(N18), .CONTROL3(N19), .CONTROL4(N20), .CONTROL5(N21), 
+        .CONTROL6(N22), .CONTROL7(N23), .CONTROL8(N482), .Z(N512) );
+  SELECT_OP C1318 ( .DATA1(1'b0), .DATA2(N500), .CONTROL1(N17), .CONTROL2(N21), 
+        .Z(N513) );
+  SELECT_OP C1319 ( .DATA1(1'b1), .DATA2(1'b0), .DATA3(1'b1), .DATA4(1'b1), 
+        .DATA5(1'b0), .DATA6(1'b0), .DATA7(1'b0), .DATA8(1'b0), .CONTROL1(N17), 
+        .CONTROL2(N18), .CONTROL3(N19), .CONTROL4(N20), .CONTROL5(N21), 
+        .CONTROL6(N22), .CONTROL7(N23), .CONTROL8(N482), .Z(N514) );
+  SELECT_OP C1320 ( .DATA1(1'b0), .DATA2(N491), .DATA3(1'b0), .CONTROL1(N17), 
+        .CONTROL2(N19), .CONTROL3(N20), .Z(N515) );
+  SELECT_OP C1321 ( .DATA1(1'b1), .DATA2(N510), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N516) );
+  SELECT_OP C1322 ( .DATA1(1'b0), .DATA2(N511), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N517) );
+  SELECT_OP C1323 ( .DATA1(1'b1), .DATA2(N512), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N518) );
+  SELECT_OP C1324 ( .DATA1(1'b0), .DATA2(N513), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N519) );
+  SELECT_OP C1325 ( .DATA1(1'b1), .DATA2(N514), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N520) );
+  SELECT_OP C1326 ( .DATA1(1'b0), .DATA2(N515), .CONTROL1(N0), .CONTROL2(N16), 
+        .Z(N521) );
+  SELECT_OP C1327 ( .DATA1(1'b0), .DATA2(1'b1), .DATA3(1'b0), .CONTROL1(N0), 
+        .CONTROL2(N526), .CONTROL3(N524), .Z(N525) );
+  MUX_OP C1328 ( .D0(rTXData[0]), .D1(rTXData[1]), .D2(rTXData[2]), .D3(
+        rTXData[3]), .D4(rTXData[4]), .D5(rTXData[5]), .D6(rTXData[6]), .D7(
+        rTXData[7]), .D8(rTXData[8]), .D9(rTXData[9]), .D10(rTXData[10]), 
+        .D11(rTXData[11]), .D12(rTXData[12]), .D13(rTXData[13]), .D14(
+        rTXData[14]), .D15(rTXData[15]), .D16(rTXData[16]), .D17(rTXData[17]), 
+        .D18(rTXData[18]), .D19(rTXData[19]), .D20(rTXData[20]), .D21(
+        rTXData[21]), .D22(rTXData[22]), .D23(rTXData[23]), .D24(rTXData[24]), 
+        .D25(rTXData[25]), .D26(rTXData[26]), .D27(rTXData[27]), .D28(
+        rTXData[28]), .D29(rTXData[29]), .D30(rTXData[30]), .D31(rTXData[31]), 
+        .S0(N24), .S1(N25), .S2(N26), .S3(N27), .S4(N28), .Z(N323) );
+  GTECH_BUF B_24 ( .A(rCounter[0]), .Z(N24) );
+  GTECH_BUF B_25 ( .A(rCounter[1]), .Z(N25) );
+  GTECH_BUF B_26 ( .A(rCounter[2]), .Z(N26) );
+  GTECH_BUF B_27 ( .A(rCounter[3]), .Z(N27) );
+  GTECH_BUF B_28 ( .A(rCounter[4]), .Z(N28) );
+  GTECH_NOT I_7 ( .A(aRst_n), .Z(N29) );
+  GTECH_AND2 C1332 ( .A(N558), .B(rCS_f[0]), .Z(wCSPosedge) );
+  GTECH_NOT I_8 ( .A(rCS_f[1]), .Z(N558) );
+  GTECH_AND2 C1334 ( .A(rCS_f[1]), .B(N559), .Z(wCSNegedge) );
+  GTECH_NOT I_9 ( .A(rCS_f[0]), .Z(N559) );
+  GTECH_AND2 C1336 ( .A(N560), .B(rSCK_f[0]), .Z(wSCKPosedge) );
+  GTECH_NOT I_10 ( .A(rSCK_f[1]), .Z(N560) );
+  GTECH_AND2 C1338 ( .A(rSCK_f[1]), .B(N561), .Z(wSCKNegedge) );
+  GTECH_NOT I_11 ( .A(rSCK_f[0]), .Z(N561) );
+  GTECH_OR2 C1343 ( .A(TXDataValid), .B(wCSPosedge), .Z(N30) );
+  GTECH_NOT I_12 ( .A(N30), .Z(N31) );
+  GTECH_NOT I_13 ( .A(wCSPosedge), .Z(N65) );
+  GTECH_AND2 C1346 ( .A(TXDataValid), .B(N65), .Z(N66) );
+  GTECH_NOT I_14 ( .A(rCurState[0]), .Z(N67) );
+  GTECH_NOT I_15 ( .A(N73), .Z(N74) );
+  GTECH_NOT I_16 ( .A(rCurState[1]), .Z(N75) );
+  GTECH_NOT I_17 ( .A(N81), .Z(N82) );
+  GTECH_NOT I_18 ( .A(rCurState[2]), .Z(N83) );
+  GTECH_NOT I_19 ( .A(N89), .Z(N90) );
+  GTECH_NOT I_20 ( .A(rCurState[3]), .Z(N91) );
+  GTECH_NOT I_21 ( .A(N97), .Z(N98) );
+  GTECH_NOT I_22 ( .A(rCurState[4]), .Z(N99) );
+  GTECH_NOT I_23 ( .A(N105), .Z(N106) );
+  GTECH_NOT I_24 ( .A(rCurState[5]), .Z(N107) );
+  GTECH_NOT I_25 ( .A(N113), .Z(N114) );
+  GTECH_NOT I_26 ( .A(rCurState[6]), .Z(N115) );
+  GTECH_NOT I_27 ( .A(N121), .Z(N122) );
+  GTECH_OR2 C1368 ( .A(N82), .B(N74), .Z(N123) );
+  GTECH_OR2 C1369 ( .A(N90), .B(N123), .Z(N124) );
+  GTECH_OR2 C1370 ( .A(N98), .B(N124), .Z(N125) );
+  GTECH_OR2 C1371 ( .A(N106), .B(N125), .Z(N126) );
+  GTECH_OR2 C1372 ( .A(N114), .B(N126), .Z(N127) );
+  GTECH_OR2 C1373 ( .A(N122), .B(N127), .Z(N128) );
+  GTECH_NOT I_28 ( .A(N128), .Z(N129) );
+  GTECH_NOT I_29 ( .A(wCSNegedge), .Z(N130) );
+  GTECH_OR2 C1380 ( .A(rCounterDone), .B(wCSPosedge), .Z(N131) );
+  GTECH_NOT I_30 ( .A(N131), .Z(N132) );
+  GTECH_OR2 C1384 ( .A(rCounterDone), .B(wCSPosedge), .Z(N140) );
+  GTECH_NOT I_31 ( .A(N140), .Z(N141) );
+  GTECH_OR2 C1388 ( .A(rCounterDone), .B(wCSPosedge), .Z(N149) );
+  GTECH_NOT I_32 ( .A(N149), .Z(N150) );
+  GTECH_NOT I_33 ( .A(RWType), .Z(N151) );
+  GTECH_OR2 C1395 ( .A(rCounterDone), .B(wCSPosedge), .Z(N159) );
+  GTECH_NOT I_34 ( .A(N159), .Z(N160) );
+  GTECH_OR2 C1399 ( .A(rCounterDone), .B(wCSPosedge), .Z(N168) );
+  GTECH_NOT I_35 ( .A(N168), .Z(N169) );
+  GTECH_OR2 C1403 ( .A(rCounterDone), .B(wCSPosedge), .Z(N177) );
+  GTECH_NOT I_36 ( .A(N177), .Z(N178) );
+  GTECH_AND2 C1406 ( .A(rCounterDone), .B(N65), .Z(N186) );
+  GTECH_AND2 C1408 ( .A(rCounterDone), .B(N65), .Z(N187) );
+  GTECH_AND2 C1410 ( .A(rCounterDone), .B(N65), .Z(N188) );
+  GTECH_AND2 C1412 ( .A(rCounterDone), .B(N65), .Z(N189) );
+  GTECH_AND2 C1414 ( .A(rCounterDone), .B(N65), .Z(N190) );
+  GTECH_AND2 C1416 ( .A(rCounterDone), .B(N65), .Z(N191) );
+  GTECH_BUF B_29 ( .A(aRst_n), .Z(N192) );
+  GTECH_NOT I_37 ( .A(wCSPosedge), .Z(N193) );
+  GTECH_AND2 C1422 ( .A(N192), .B(N193), .Z(N194) );
+  GTECH_NOT I_38 ( .A(N200), .Z(N201) );
+  GTECH_NOT I_39 ( .A(N207), .Z(N208) );
+  GTECH_NOT I_40 ( .A(N214), .Z(N215) );
+  GTECH_NOT I_41 ( .A(N221), .Z(N222) );
+  GTECH_NOT I_42 ( .A(N228), .Z(N229) );
+  GTECH_NOT I_43 ( .A(N235), .Z(N236) );
+  GTECH_NOT I_44 ( .A(N242), .Z(N243) );
+  GTECH_OR2 C1444 ( .A(N208), .B(N201), .Z(N244) );
+  GTECH_OR2 C1445 ( .A(N215), .B(N244), .Z(N245) );
+  GTECH_OR2 C1446 ( .A(N222), .B(N245), .Z(N246) );
+  GTECH_OR2 C1447 ( .A(N229), .B(N246), .Z(N247) );
+  GTECH_OR2 C1448 ( .A(N236), .B(N247), .Z(N248) );
+  GTECH_OR2 C1449 ( .A(N243), .B(N248), .Z(N249) );
+  GTECH_NOT I_45 ( .A(N249), .Z(N250) );
+  GTECH_AND2 C1451 ( .A(N194), .B(N208), .Z(N251) );
+  GTECH_OR2 C1454 ( .A(wSCKPosedge), .B(rCounterDone), .Z(N252) );
+  GTECH_NOT I_46 ( .A(N252), .Z(N253) );
+  GTECH_AND2 C1456 ( .A(N251), .B(N415), .Z(N254) );
+  GTECH_AND2 C1457 ( .A(N194), .B(N215), .Z(N267) );
+  GTECH_OR2 C1460 ( .A(wSCKPosedge), .B(rCounterDone), .Z(N268) );
+  GTECH_NOT I_47 ( .A(N268), .Z(N269) );
+  GTECH_AND2 C1462 ( .A(N267), .B(N416), .Z(N270) );
+  GTECH_AND2 C1463 ( .A(N194), .B(N222), .Z(N283) );
+  GTECH_OR2 C1466 ( .A(wSCKPosedge), .B(rCounterDone), .Z(N284) );
+  GTECH_NOT I_48 ( .A(N284), .Z(N285) );
+  GTECH_AND2 C1468 ( .A(N283), .B(N417), .Z(N286) );
+  GTECH_AND2 C1469 ( .A(N194), .B(N229), .Z(N298) );
+  GTECH_OR2 C1472 ( .A(wSCKPosedge), .B(rCounterDone), .Z(N299) );
+  GTECH_NOT I_49 ( .A(N299), .Z(N300) );
+  GTECH_AND2 C1474 ( .A(N298), .B(N418), .Z(N301) );
+  GTECH_AND2 C1475 ( .A(N194), .B(N236), .Z(N314) );
+  GTECH_OR2 C1478 ( .A(wSCKNegedge), .B(rCounterDone), .Z(N315) );
+  GTECH_NOT I_50 ( .A(N315), .Z(N316) );
+  GTECH_AND2 C1480 ( .A(N314), .B(N419), .Z(N317) );
+  GTECH_AND2 C1481 ( .A(N194), .B(N243), .Z(N331) );
+  GTECH_OR2 C1484 ( .A(wSCKPosedge), .B(rCounterDone), .Z(N332) );
+  GTECH_NOT I_51 ( .A(N332), .Z(N333) );
+  GTECH_AND2 C1486 ( .A(N331), .B(N420), .Z(N334) );
+  GTECH_NOT I_52 ( .A(rCounterDone), .Z(N414) );
+  GTECH_AND2 C1489 ( .A(wSCKPosedge), .B(N414), .Z(N415) );
+  GTECH_AND2 C1490 ( .A(N254), .B(N414) );
+  GTECH_AND2 C1492 ( .A(wSCKPosedge), .B(N414), .Z(N416) );
+  GTECH_AND2 C1493 ( .A(N270), .B(N414) );
+  GTECH_AND2 C1495 ( .A(wSCKPosedge), .B(N414), .Z(N417) );
+  GTECH_AND2 C1496 ( .A(N286), .B(N414) );
+  GTECH_AND2 C1498 ( .A(wSCKPosedge), .B(N414), .Z(N418) );
+  GTECH_AND2 C1499 ( .A(N301), .B(N414) );
+  GTECH_AND2 C1501 ( .A(wSCKNegedge), .B(N414), .Z(N419) );
+  GTECH_AND2 C1502 ( .A(N317), .B(N414) );
+  GTECH_AND2 C1504 ( .A(wSCKPosedge), .B(N414), .Z(N420) );
+  GTECH_AND2 C1505 ( .A(N334), .B(N414) );
+  GTECH_AND2 C1509 ( .A(N192), .B(N193), .Z(N421) );
+  GTECH_NOT I_53 ( .A(rNxtState[0]), .Z(N422) );
+  GTECH_NOT I_54 ( .A(N428), .Z(N429) );
+  GTECH_NOT I_55 ( .A(rNxtState[1]), .Z(N430) );
+  GTECH_NOT I_56 ( .A(N436), .Z(N437) );
+  GTECH_NOT I_57 ( .A(rNxtState[2]), .Z(N438) );
+  GTECH_NOT I_58 ( .A(N444), .Z(N445) );
+  GTECH_NOT I_59 ( .A(N451), .Z(N452) );
+  GTECH_NOT I_60 ( .A(rNxtState[4]), .Z(N453) );
+  GTECH_NOT I_61 ( .A(N459), .Z(N460) );
+  GTECH_NOT I_62 ( .A(rNxtState[5]), .Z(N461) );
+  GTECH_NOT I_63 ( .A(N467), .Z(N468) );
+  GTECH_NOT I_64 ( .A(N474), .Z(N475) );
+  GTECH_OR2 C1531 ( .A(N437), .B(N429), .Z(N476) );
+  GTECH_OR2 C1532 ( .A(N445), .B(N476), .Z(N477) );
+  GTECH_OR2 C1533 ( .A(N452), .B(N477), .Z(N478) );
+  GTECH_OR2 C1534 ( .A(N460), .B(N478), .Z(N479) );
+  GTECH_OR2 C1535 ( .A(N468), .B(N479), .Z(N480) );
+  GTECH_OR2 C1536 ( .A(N475), .B(N480), .Z(N481) );
+  GTECH_NOT I_65 ( .A(N481), .Z(N482) );
+  GTECH_AND2 C1538 ( .A(N547), .B(wSCKPosedge), .Z(N483) );
+  GTECH_AND2 C1540 ( .A(N421), .B(N445) );
+  GTECH_AND2 C1541 ( .A(N490), .B(wSCKPosedge), .Z(N491) );
+  GTECH_AND2 C1543 ( .A(N552), .B(wSCKPosedge), .Z(N492) );
+  GTECH_AND2 C1545 ( .A(N421), .B(N460) );
+  GTECH_AND2 C1546 ( .A(N499), .B(wSCKPosedge), .Z(N500) );
+  GTECH_AND2 C1548 ( .A(N421), .B(N468) );
+  GTECH_AND2 C1549 ( .A(N507), .B(wSCKNegedge), .Z(N508) );
+  GTECH_AND2 C1551 ( .A(N557), .B(wSCKPosedge), .Z(N509) );
+  GTECH_OR2 C1553 ( .A(N534), .B(N542), .Z(N522) );
+  GTECH_OR2 C1556 ( .A(N522), .B(wCSPosedge), .Z(N523) );
+  GTECH_NOT I_66 ( .A(N523), .Z(N524) );
+  GTECH_AND2 C1559 ( .A(N522), .B(N65), .Z(N526) );
+endmodule
+

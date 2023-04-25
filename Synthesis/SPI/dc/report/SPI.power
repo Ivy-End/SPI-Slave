@@ -1,0 +1,56 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : SPI
+Version: O-2018.06-SP4
+Date   : Mon Apr 24 21:41:33 2023
+****************************************
+
+
+Library(s) Used:
+
+    xmc9t_55ef_ss_1p08v_m40c (File: /backup-tools/PDK/XMC/XMC55_HP/STD/xmc55ef_hp/std_lib_20181213/hvt_std_lib_9t_20181213/lib/xmc9t_55ef_ss_1p08v_m40c.db)
+
+
+Operating Conditions: xmc9t_55ef_ss_1p08v_m40c   Library: xmc9t_55ef_ss_1p08v_m40c
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+SPI                    Small             xmc9t_55ef_ss_1p08v_m40c
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =  94.0299 uW   (94%)
+  Net Switching Power  =   5.9024 uW    (6%)
+                         ---------
+Total Dynamic Power    =  99.9323 uW  (100%)
+
+Cell Leakage Power     =   2.7066 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       9.2527e-02        7.8713e-04            1.5482        9.3315e-02  (  93.38%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  1.5032e-03        5.1153e-03            1.1584        6.6196e-03  (   6.62%)
+--------------------------------------------------------------------------------------------------
+Total          9.4030e-02 mW     5.9024e-03 mW         2.7066 nW     9.9935e-02 mW
+1

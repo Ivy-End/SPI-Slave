@@ -1,0 +1,127 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : SPI
+Version: O-2018.06-SP4
+Date   : Mon Apr 24 21:41:32 2023
+****************************************
+
+
+   min_delay/hold ('Clk' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   rSCK_f_reg[1]/D              2.90           0.69 f        -2.21  (VIOLATED)
+   rCS_f_reg[1]/D               2.92           0.74 f        -2.18  (VIOLATED)
+   rRXAddrValid_reg/D           2.90           0.98 f        -1.92  (VIOLATED)
+   rCurState_reg[5]/D           2.89           0.97 f        -1.92  (VIOLATED)
+   rRXAddr_reg[0]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[1]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[2]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[3]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[4]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[5]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[6]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[7]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[8]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[9]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[10]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[11]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[12]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[13]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXAddr_reg[14]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[0]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[1]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[2]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[3]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[4]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[5]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[6]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[7]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[8]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[9]/D             2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[10]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[11]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[12]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[13]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[14]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[15]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[16]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[17]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[18]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[19]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[20]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[21]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[22]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[23]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[24]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[25]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[26]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[27]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[28]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[29]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rRXData_reg[30]/D            2.92           1.02 f        -1.91  (VIOLATED)
+   rCurState_reg[3]/D           2.87           0.98 f        -1.89  (VIOLATED)
+   rTXData_reg[4]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[5]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[6]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[7]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[0]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[1]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[16]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[17]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[18]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[19]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[20]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[21]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[22]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[23]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[8]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[9]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[2]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[3]/D             2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[24]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[25]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[28]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[29]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[30]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[31]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[26]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[27]/D            2.92           1.04 f        -1.88  (VIOLATED)
+   rTXData_reg[10]/D            2.92           1.05 f        -1.88  (VIOLATED)
+   rTXData_reg[11]/D            2.92           1.05 f        -1.88  (VIOLATED)
+   rTXData_reg[12]/D            2.92           1.05 f        -1.88  (VIOLATED)
+   rTXData_reg[13]/D            2.92           1.05 f        -1.88  (VIOLATED)
+   rTXData_reg[14]/D            2.92           1.05 f        -1.88  (VIOLATED)
+   rTXData_reg[15]/D            2.92           1.05 f        -1.88  (VIOLATED)
+   rCurState_reg[1]/D           2.88           1.03 f        -1.86  (VIOLATED)
+   rRXAddr_reg[15]/D            2.92           1.09 f        -1.84  (VIOLATED)
+   rRXData_reg[31]/D            2.92           1.09 f        -1.84  (VIOLATED)
+   rCurState_reg[2]/D           2.87           1.05 f        -1.82  (VIOLATED)
+   rMISO_reg/D                  2.91           1.12 f        -1.79  (VIOLATED)
+   rCurState_reg[4]/D           2.91           1.15 f        -1.76  (VIOLATED)
+   rCounter_reg[1]/D            2.87           1.14 f        -1.73  (VIOLATED)
+   rCurState_reg[0]/D           2.95           1.23 f        -1.72  (VIOLATED)
+   rCurState_reg[6]/D           2.89           1.24 f        -1.65  (VIOLATED)
+   rRWType_reg/D                2.89           1.25 f        -1.64  (VIOLATED)
+   rCounter_reg[4]/D            2.91           1.29 f        -1.62  (VIOLATED)
+   rCounter_reg[2]/D            2.90           1.30 f        -1.60  (VIOLATED)
+   rCounter_reg[3]/D            2.90           1.36 f        -1.54  (VIOLATED)
+   rRXDataValid_reg/D           2.84           1.30 f        -1.53  (VIOLATED)
+   rCounter_reg[0]/D            2.91           1.38 f        -1.53  (VIOLATED)
+   rCounterDone_reg/D           2.92           1.50 f        -1.41  (VIOLATED)
+   rRXAck_reg/D                 2.85           1.52 f        -1.33  (VIOLATED)
+
+
+   max_leakage_power
+
+                             Required        Actual
+   Design                   Leakage Power  Leakage Power     Slack
+   -----------------------------------------------------------------
+   SPI                          0.00           3.50          -3.50  (VIOLATED)
+
+
+1

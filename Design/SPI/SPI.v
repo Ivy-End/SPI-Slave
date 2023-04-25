@@ -11,7 +11,7 @@ module SPI #(
     input  [DATA_WIDTH - 1 : 0] TXData,      // SPI Data Transimit
     input                       TXDataValid, // SPI Data Transimit Valid
 
-    output                      RWType,      // SPI Read or Write 1'b1 - RXD(Write) 1'b0 - TXD(Read)
+    output                      RWType,      // SPI Read or Write                 (1'b1 - Write, 1'b0 - Read)
 
     output [DATA_WIDTH - 1 : 0] RXData,      // SPI Data Receive                  (FPGA -> Chip)
     output                      RXDataValid, // SPI Data Receive Valid            (FPGA -> Chip)
@@ -20,7 +20,7 @@ module SPI #(
     output                      RXAddrValid, // SPI Address Receive Valid         (Chip -> FPGA)
 
     // To External
-    input                       CS,          // SPI Chip Select, Active Low        (FPGA -> Chip)
+    input                       CS,          // SPI Chip Select, Active Low       (FPGA -> Chip)
     input                       SCK,        // SPI Sync Clock                     (FPGA -> Chip)
     input                       MOSI,       // Master output -> Slave input       (FPGA -> Chip)
     output                      MISO,       // Slave output -> Master input       (Chip -> FPGA)
