@@ -1,10 +1,12 @@
 `timescale 1ns / 1ps
 
 `include "uvm_macros.svh"
-`include "Parameters.svh"
-`include "SPI_Interface.svh"
-`include "SPI_Test.svh"
 import uvm_pkg::*;
+
+`include "./UVM/SPI_Interface.svh"
+`include "./UVM/SPI_Test.svh"
+
+`include "Parameters.svh"
 
 module tb_SPI;
     // ==================== Reg / Wire Definition ====================
@@ -97,9 +99,9 @@ module tb_SPI;
 
     // ==================== Connect Interface ====================
     initial begin
-        uvm_config_db#(virtual SPI_Interface)::set(null, "uvm_test_top.testEnvironment.inAgent.driver",   "virtualInterface",  inputInferface);
-        uvm_config_db#(virtual SPI_Interface)::set(null, "uvm_test_top.testEnvironment.inAgent.monitor",  "virtualInterface",  inputInferface);
-        uvm_config_db#(virtual SPI_Interface)::set(null, "uvm_test_top.testEnvironment.outAgent.monitor", "virtualInterface", outputInferface);
+        uvm_config_db#(virtual SPI_Interface)::set(null, "uvm_test_top.environment.inAgent.driver",   "virtualInterface",  inputInferface);
+        uvm_config_db#(virtual SPI_Interface)::set(null, "uvm_test_top.environment.inAgent.monitor",  "virtualInterface",  inputInferface);
+        uvm_config_db#(virtual SPI_Interface)::set(null, "uvm_test_top.environment.outAgent.monitor", "virtualInterface", outputInferface);
     end
 
     // ==================== Generate Clock ====================
@@ -107,6 +109,7 @@ module tb_SPI;
         Clk = 1'b0;
         forever #(P_SYSTEM_CLK_PERIOD / 2) Clk = ~Clk;
     end
+    
     initial begin
         SCK = 1'b0;
         forever #(P_SPI_CLK_PERIOD / 2) SCK = ~SCK;
@@ -114,7 +117,8 @@ module tb_SPI;
 
     // ==================== Generate Reset ====================
     initial begin
-        aRst_n = 1'b0;
+        aRst_n = 1'b1;
+        #(P_SYSTEM_CLK_PERIOD * P_SYSTEM_RST_CLK_COUNT) aRst_n = 1'b0;
         #(P_SYSTEM_CLK_PERIOD * P_SYSTEM_RST_CLK_COUNT) aRst_n = 1'b1;
     end
 

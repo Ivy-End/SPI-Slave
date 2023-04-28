@@ -16,12 +16,14 @@ interface SPI_Interface (
 
     clocking driving @ (posedge Clk);
         default input #0ns output #0ns;
+
         output CS, MOSI;
         input  MISO, RXAck;
     endclocking
 
     clocking monitoring @ (posedge Clk);
         default input #0ns output #0ns;
+
         input CS, MOSI, MISO, RXAck;
     endclocking
 
