@@ -2,8 +2,9 @@
 `define __SPI_SEQUENCE_RAND_RW_TEST__
 
 `include "uvm_macros.svh"
-`include "./UVM/SPI_Transaction.svh"
 import uvm_pkg::*;
+
+`include "./UVM/SPI_Transaction.svh"
 
 class SPI_SequenceRandRWTest extends uvm_sequence #(SPI_Transaction);
     `uvm_object_utils(SPI_SequenceRandRWTest);

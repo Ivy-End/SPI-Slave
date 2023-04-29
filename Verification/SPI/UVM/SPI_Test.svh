@@ -2,10 +2,12 @@
 `define __SPI_TEST__
 
 `include "uvm_macros.svh"
+import uvm_pkg::*;
+
 `include "Parameters.svh"
+
 `include "./UVM/SPI_Sequence.svh"
 `include "./UVM/SPI_Environment.svh"
-import uvm_pkg::*;
 
 class SPI_Test extends uvm_test;
     `uvm_component_utils(SPI_Test)

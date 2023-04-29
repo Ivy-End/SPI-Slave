@@ -117,7 +117,8 @@ module tb_SPI;
 
     // ==================== Generate Reset ====================
     initial begin
-        aRst_n = 1'b1;
+        aRst_n = 1'b0;
+        #(P_SYSTEM_CLK_PERIOD * P_SYSTEM_RST_CLK_COUNT) aRst_n = 1'b1;
         #(P_SYSTEM_CLK_PERIOD * P_SYSTEM_RST_CLK_COUNT) aRst_n = 1'b0;
         #(P_SYSTEM_CLK_PERIOD * P_SYSTEM_RST_CLK_COUNT) aRst_n = 1'b1;
     end

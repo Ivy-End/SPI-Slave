@@ -1,8 +1,8 @@
 DESIGN_NAME  = "tb_SPI"
 LOG_VCS      = "vcs.log"
 LOG_SIMV     = "simv.log"
-FILE_LIST    = "./list.f"
-FILE_LIST_DC = "./list_dc.f"
+FILE_LIST    = "./sim/rtl/list.f"
+FILE_LIST_DC = "./sim/dc/list.f"
 UVM_HOME     = "/data1/share/uvm-1.1d"
 
 # Code Coverage
@@ -72,8 +72,5 @@ urg :
 	verdi -full64 -cov -covdir ./cvrg.vdb
 
 clean :
-	rm -rf simv ucli.key novas* *.fsdb.* cm.*
-	rm -rf csrc simv.daidir verdiLog cvrg.vdb vdCovLog
-
-cleanall : clean
-	rm -rf *_Golden*.txt *_DUT.txt
+	rm -rf simv ucli.key novas* *.fsdb.* cm.* *.h
+	rm -rf csrc simv.daidir verdiLog vdCovLog

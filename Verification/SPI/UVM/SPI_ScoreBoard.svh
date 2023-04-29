@@ -2,9 +2,11 @@
 `define __SPI_SCORE_BOARD__
 
 `include "uvm_macros.svh"
-`include "Parameters.svh"
-`include "./UVM/SPI_Transaction.svh"
 import uvm_pkg::*;
+
+`include "Parameters.svh"
+
+`include "./UVM/SPI_Transaction.svh"
 
 class SPI_ScoreBoard extends uvm_scoreboard;
     `uvm_component_utils(SPI_ScoreBoard)

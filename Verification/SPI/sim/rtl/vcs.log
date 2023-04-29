@@ -1,0 +1,482 @@
+Command: vcs -nc -j32 -full64 -sverilog -debug_access+all -timescale=1ns/1ps +acc \
++vpi +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR +incdir+/data1/share/uvm-1.1d/src /data1/share/uvm-1.1d/src/uvm.sv \
+/data1/share/uvm-1.1d/src/dpi/uvm_dpi.cc -CFLAGS -DVCS -l vcs.log -f ./sim/rtl/list.f \
+-cm line+cond+tgl+fsm+branch+assert -cm_dir cvrg
+
+Warning-[DEPRECATED_OPTION] Deprecated option used
+  The specified option '+acc' is deprecated.
+  Please use '-debug_access+r+w+nomemcbk -debug_region+cell' instead.
+
+Parsing design file '/data1/share/uvm-1.1d/src/uvm.sv'
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_version_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_message_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_phase_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_object_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_printer_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_tlm_defines.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh'.
+Back to file '/data1/share/uvm-1.1d/src/macros/uvm_tlm_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_sequence_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_callback_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_reg_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/macros/uvm_deprecated_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Parsing included file '/data1/share/uvm-1.1d/src/dpi/uvm_dpi.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/dpi/uvm_hdl.svh'.
+Back to file '/data1/share/uvm-1.1d/src/dpi/uvm_dpi.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/dpi/uvm_svcmd_dpi.svh'.
+Back to file '/data1/share/uvm-1.1d/src/dpi/uvm_dpi.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/dpi/uvm_regex.svh'.
+Back to file '/data1/share/uvm-1.1d/src/dpi/uvm_dpi.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_version.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_object_globals.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_misc.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_object.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_pool.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_queue.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_factory.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_registry.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_spell_chkr.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_resource.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/deprecated/uvm_resource_converter.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_resource_specializations.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_resource_db.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_config_db.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_printer.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_comparer.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_packer.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_recorder.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_event_callback.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_event.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_barrier.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_callback.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_callback.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_report_catcher.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_report_server.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_report_handler.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_report_object.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_transaction.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_phase.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_domain.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_bottomup_phase.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_topdown_phase.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_task_phase.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_common_phases.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_runtime_phases.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_component.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_root.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_component.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_objection.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_heartbeat.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_globals.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_cmdline_processor.svh'.
+Back to file '/data1/share/uvm-1.1d/src/base/uvm_base.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm_ifs.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_sqr_ifs.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/base/uvm_port_base.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_imps.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_ports.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_exports.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_analysis_port.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm_fifo_base.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm_fifos.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm_req_rsp.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm1/uvm_sqr_connections.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm1/uvm_tlm.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_pair.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_policies.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_in_order_comparator.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_algorithmic_comparator.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_random_stimulus.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_subscriber.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_monitor.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_driver.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_push_driver.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_scoreboard.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_agent.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_env.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/comps/uvm_test.svh'.
+Back to file '/data1/share/uvm-1.1d/src/comps/uvm_comps.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequence_item.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequencer_base.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequencer_analysis_fifo.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequencer_param_base.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequencer.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_push_sequencer.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequence_base.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequence.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequence_library.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/seq/uvm_sequence_builtin.svh'.
+Back to file '/data1/share/uvm-1.1d/src/seq/uvm_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_defines.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_time.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_generic_payload.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_ifs.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_imps.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_ports.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_exports.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_sockets_base.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2_sockets.svh'.
+Back to file '/data1/share/uvm-1.1d/src/tlm2/uvm_tlm2.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_item.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_adapter.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_predictor.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_sequence.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_cbs.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_backdoor.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_field.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_vreg_field.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_indirect.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_fifo.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_file.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_mem_mam.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_vreg.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_mem.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_map.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/uvm_reg_block.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/sequences/uvm_reg_hw_reset_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/sequences/uvm_reg_bit_bash_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/sequences/uvm_mem_walk_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/sequences/uvm_mem_access_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/sequences/uvm_reg_access_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/sequences/uvm_reg_mem_shared_access_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/sequences/uvm_reg_mem_built_in_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/reg/sequences/uvm_reg_mem_hdl_paths_seq.svh'.
+Back to file '/data1/share/uvm-1.1d/src/reg/uvm_reg_model.svh'.
+Back to file '/data1/share/uvm-1.1d/src/uvm_pkg.sv'.
+Back to file '/data1/share/uvm-1.1d/src/uvm.sv'.
+Parsing design file '../../Design/SPI/SPI.v'
+Parsing design file './tb_SPI.sv'
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './tb_SPI.sv'.
+Parsing included file './UVM/SPI_Interface.svh'.
+Parsing included file 'Parameters.svh'.
+Back to file './UVM/SPI_Interface.svh'.
+Back to file './tb_SPI.sv'.
+Parsing included file './UVM/SPI_Test.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_Test.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_Test.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file 'Parameters.svh'.
+Back to file './UVM/SPI_Test.svh'.
+Parsing included file './UVM/SPI_Sequence.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_Sequence.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_Sequence.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file './UVM/SPI_SequenceRandRWTest.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_SequenceRandRWTest.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_SequenceRandRWTest.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file './UVM/SPI_Transaction.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_Transaction.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_Transaction.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Back to file './UVM/SPI_SequenceRandRWTest.svh'.
+Back to file './UVM/SPI_Sequence.svh'.
+Parsing included file './UVM/SPI_Transaction.svh'.
+Back to file './UVM/SPI_Sequence.svh'.
+Back to file './UVM/SPI_Test.svh'.
+Parsing included file './UVM/SPI_Environment.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_Environment.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_Environment.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file './UVM/SPI_Agent.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_Agent.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_Agent.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file './UVM/SPI_Driver.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_Driver.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_Driver.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file 'Parameters.svh'.
+Back to file './UVM/SPI_Driver.svh'.
+Parsing included file './UVM/SPI_Interface.svh'.
+Back to file './UVM/SPI_Driver.svh'.
+Parsing included file './UVM/SPI_Transaction.svh'.
+Back to file './UVM/SPI_Driver.svh'.
+Back to file './UVM/SPI_Agent.svh'.
+Parsing included file './UVM/SPI_Monitor.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_Monitor.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_Monitor.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file './UVM/SPI_Interface.svh'.
+Back to file './UVM/SPI_Monitor.svh'.
+Parsing included file './UVM/SPI_Transaction.svh'.
+Back to file './UVM/SPI_Monitor.svh'.
+Back to file './UVM/SPI_Agent.svh'.
+Parsing included file './UVM/SPI_Sequencer.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_Sequencer.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_Sequencer.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file './UVM/SPI_Transaction.svh'.
+Back to file './UVM/SPI_Sequencer.svh'.
+Back to file './UVM/SPI_Agent.svh'.
+Back to file './UVM/SPI_Environment.svh'.
+Parsing included file './UVM/SPI_ReferenceModel.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_ReferenceModel.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_ReferenceModel.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file 'Parameters.svh'.
+Back to file './UVM/SPI_ReferenceModel.svh'.
+Parsing included file './UVM/SPI_Interface.svh'.
+Back to file './UVM/SPI_ReferenceModel.svh'.
+Parsing included file './UVM/SPI_Transaction.svh'.
+Back to file './UVM/SPI_ReferenceModel.svh'.
+Back to file './UVM/SPI_Environment.svh'.
+Parsing included file './UVM/SPI_ScoreBoard.svh'.
+Parsing included file '/data1/share/uvm-1.1d/src/uvm_macros.svh'.
+Back to file './UVM/SPI_ScoreBoard.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+./UVM/SPI_ScoreBoard.svh, 5
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file 'Parameters.svh'.
+Back to file './UVM/SPI_ScoreBoard.svh'.
+Parsing included file './UVM/SPI_Transaction.svh'.
+Back to file './UVM/SPI_ScoreBoard.svh'.
+Back to file './UVM/SPI_Environment.svh'.
+Parsing included file './UVM/SPI_Transaction.svh'.
+Back to file './UVM/SPI_Environment.svh'.
+Back to file './UVM/SPI_Test.svh'.
+Back to file './tb_SPI.sv'.
+Parsing included file 'Parameters.svh'.
+Back to file './tb_SPI.sv'.
+Top Level Modules:
+       tb_SPI
+TimeScale is 1 ns / 1 ps
+VCS Coverage Metrics Release O-2018.09-SP2_Full64 Copyright (c) 1991-2018 by Synopsys Inc.
+Starting vcs inline pass...
+
+Note-[VCS_PARAL] Parallel code-gen enabled
+  VCS is running with parallel code generation(-j)...
+
+5 modules and 0 UDP read.
+recompiling module tb_SPI
+recompiling module SPI
+recompiling package vcs_paramclassrepository
+recompiling package uvm_pkg
+recompiling module SPI_Interface
+All of 5 modules done
+make[1]: Entering directory `/home/wangkai/eda/GC3103/Digital/Verification/SPI/csrc' \
+
+rm -f _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+g++ -w  -pipe -fPIC -DVCS -O -I/opt/Synopsys/VCS_2018_09/include    -c /data1/share/uvm-1.1d/src/dpi/uvm_dpi.cc \
+
+if [ -x ../simv ]; then chmod -x ../simv; fi
+g++  -o ../simv    -Wl,-rpath-link=./ -Wl,-rpath='$ORIGIN'/simv.daidir/ -Wl,-rpath=./simv.daidir/ \
+-Wl,-rpath='$ORIGIN'/simv.daidir//scsim.db.dir  -rdynamic  -Wl,-rpath=/opt/Synopsys/VCS_2018_09/linux64/lib \
+-L/opt/Synopsys/VCS_2018_09/linux64/lib  uvm_dpi.o   objs/amcQw_d.o   _47933_archive_1.so \
+_48000_archive_1.so _48001_archive_1.so _48002_archive_1.so _48003_archive_1.so _48004_archive_1.so \
+_48005_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o \
+rmar_llvm_0_0.o          -lzerosoft_rt_stubs -lvirsim -lerrorinf -lsnpsmalloc -lvfs \
+-lvcsnew -lsimprofile -lreader_common /opt/Synopsys/VCS_2018_09/linux64/lib/libBA.a \
+-luclinative /opt/Synopsys/VCS_2018_09/linux64/lib/vcs_tls.o   -Wl,-whole-archive \
+-lvcsucli -Wl,-no-whole-archive       ./../simv.daidir/vc_hdrs.o  _vcs_pli_stub_.o \
+/opt/Synopsys/VCS_2018_09/linux64/lib/vcs_save_restore_new.o /opt/Synopsys/VERDI_2019_09/share/PLI/VCS/LINUX64/pli.a \
+-ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory `/home/wangkai/eda/GC3103/Digital/Verification/SPI/csrc' \
+

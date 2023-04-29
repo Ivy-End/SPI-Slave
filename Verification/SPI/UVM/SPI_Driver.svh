@@ -18,10 +18,13 @@ class SPI_Driver extends uvm_driver #(SPI_Transaction);
 
     extern virtual task          doReset();
     extern virtual task          doDrive(SPI_Transaction transaction);
+    extern virtual task          doCoverage();
     
             SPI_Transaction requestTransaction;
             SPI_Transaction responseTransaction;
     virtual SPI_Interface   virtualInterface;
+
+    integer                 coverageDone = 0;
 endclass
 
 function SPI_Driver::new(string name, uvm_component parent = null);
@@ -42,19 +45,22 @@ task SPI_Driver::main_phase(uvm_phase phase);
             this.doReset();
             @ (posedge this.virtualInterface.Clk);
         end else begin
-            seq_item_port.try_next_item(this.requestTransaction);
-            if (this.requestTransaction == null) begin
-                `uvm_info(get_type_name(), "No transaction received.", UVM_LOW);
-
-                @ (posedge this.virtualInterface.SCK);
+            if (coverageDone == 0) begin
+                this.doCoverage();
+                coverageDone = 1;
             end else begin
-                `uvm_info(get_type_name(), $sformatf("Transaction received: %s", this.requestTransaction.toString()), UVM_HIGH);
+                seq_item_port.try_next_item(this.requestTransaction);
+                if (this.requestTransaction == null) begin
+                    `uvm_info(get_type_name(), "No transaction received.", UVM_LOW);
 
-                this.doDrive(this.requestTransaction);
-                $cast(this.responseTransaction, this.requestTransaction.clone());
-                this.responseTransaction.set_sequence_id(this.requestTransaction.get_sequence_id());
-                seq_item_port.put_response(this.responseTransaction);
-                seq_item_port.item_done();
+                    @ (posedge this.virtualInterface.SCK);
+                end else begin
+                    this.doDrive(this.requestTransaction);
+                    $cast(this.responseTransaction, this.requestTransaction.clone());
+                    this.responseTransaction.set_sequence_id(this.requestTransaction.get_sequence_id());
+                    seq_item_port.put_response(this.responseTransaction);
+                    seq_item_port.item_done();
+                end
             end
         end
     end
@@ -96,6 +102,106 @@ task SPI_Driver::doDrive(SPI_Transaction transaction);
     @ (negedge this.virtualInterface.SCK);
     @ (negedge this.virtualInterface.SCK);
     this.virtualInterface.driving.CS   <= 1'b1;
+endtask
+
+task SPI_Driver::doCoverage();    
+    // LP_SPI_STATE_RW -> LP_SPI_STATE_IDLE
+    begin
+        // Start transmission & Set MOSI to write mode
+        this.virtualInterface.driving.CS   <= 1'b1;
+        @ (negedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b0;
+        this.virtualInterface.driving.MOSI <= 1'b1;
+
+        repeat(4) @ (posedge this.virtualInterface.Clk);
+        this.virtualInterface.driving.CS   <= 1'b1;
+    end
+
+    // LP_SPI_STATE_ADDR -> LP_SPI_STATE_IDLE
+    begin
+        // Start transmission & Set MOSI to write mode
+        @ (negedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b0;
+        this.virtualInterface.driving.MOSI <= 1'b1;
+
+        // Send address
+        @ (negedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b1;
+    end
+
+    // LP_SPI_STATE_ADDR_ACK -> LP_SPI_STATE_IDLE
+    begin
+        // Start transmission & Set MOSI to write mode
+        @ (negedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b0;
+        this.virtualInterface.driving.MOSI <= 1'b1;
+
+        // Send address
+        @ (negedge this.virtualInterface.SCK);
+        for (int i = 0; i < P_SPI_ADDR_WIDTH; i++) begin
+            @ (negedge this.virtualInterface.SCK);
+        end
+
+        @ (posedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b1;
+    end
+
+    // LP_SPI_STATE_RX -> LP_SPI_STATE_IDLE
+    begin
+        // Start transmission & Set MOSI to write mode
+        @ (negedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b0;
+        this.virtualInterface.driving.MOSI <= 1'b1;
+
+        // Send address
+        @ (negedge this.virtualInterface.SCK);
+        for (int i = 0; i < P_SPI_ADDR_WIDTH; i++) begin
+            @ (negedge this.virtualInterface.SCK);
+        end
+        
+        @ (negedge this.virtualInterface.SCK);
+        @ (posedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b1;
+    end
+
+    // LP_SPI_STATE_RX_ACK -> LP_SPI_STATE_IDLE
+    begin
+        // Start transmission & Set MOSI to write mode
+        @ (negedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b0;
+        this.virtualInterface.driving.MOSI <= 1'b1;
+
+        // Send address
+        @ (negedge this.virtualInterface.SCK);
+        for (int i = 0; i < P_SPI_ADDR_WIDTH; i++) begin
+            @ (negedge this.virtualInterface.SCK);
+        end
+
+        @ (negedge this.virtualInterface.SCK);
+        for (int i = 0; i < P_SPI_DATA_WIDTH; i++) begin
+            @ (negedge this.virtualInterface.SCK);
+        end
+
+        @ (posedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b1;
+    end
+
+    // LP_SPI_STATE_TX -> LP_SPI_STATE_IDLE
+    begin
+        // Start transmission & Set MOSI to write mode
+        @ (negedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b0;
+        this.virtualInterface.driving.MOSI <= 1'b0;
+
+        // Send address
+        @ (negedge this.virtualInterface.SCK);
+        for (int i = 0; i < P_SPI_ADDR_WIDTH; i++) begin
+            @ (negedge this.virtualInterface.SCK);
+        end
+
+        @ (negedge this.virtualInterface.SCK);
+        this.virtualInterface.driving.CS   <= 1'b1;
+    end
 endtask
 
 `endif
