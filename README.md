@@ -91,6 +91,58 @@ make cleanall
 
 This will remove all generated files and directories except the repository itself.
 
+## Configuration
+
+### Parameters
+
+- `DATA_WIDTH`: Parameter that sets the width of the data bus. The default value is 32.
+- `ADDR_WIDTH`: Parameter that sets the width of the address bus. The default value is 16.
+
+## I/O Signals
+
+- `Clk`: Input clock signal.
+- `aRst_n`: Input asynchronous active-low reset signal.
+- `TXData`: Input data to be transmitted over SPI.
+- `TXDataValid`: Input signal indicating that TXData is valid.
+- `RWType`: Output signal indicating whether the current SPI transaction is a read or write. A value of 1 indicates a write, and a value of 0 indicates a read.
+- `RXData`: Output data received over SPI.
+- `RXDataValid`: Output signal indicating that RXData is valid.
+- `RXAddr`: Output address received over SPI.
+- `RXAddrValid`: Output signal indicating that RXAddr is valid.
+- `CS`: Input SPI chip select signal. Active low.
+- `SCK`: Input SPI synchronous clock signal.
+- `MOSI`: Input master output, slave input data signal.
+- `MISO`: Output slave output, master input data signal.
+- `RXAck`: Output signal indicating that a data byte has been received and processed by the SPI module.
+
+### Internal Signals
+
+- `LP_SPI_STATE_IDLE`: Constant defining the idle state of the SPI finite state machine (FSM).
+- `LP_SPI_STATE_RW`: Constant defining the read/write state of the SPI FSM.
+- `LP_SPI_STATE_ADDR`: Constant defining the address receive state of the SPI FSM.
+- `LP_SPI_STATE_ADDR_ACK`: Constant defining the address acknowledge state of the SPI FSM.
+- `LP_SPI_STATE_RX`: Constant defining the data receive state of the SPI FSM.
+- `LP_SPI_STATE_TX`: Constant defining the data transmit state of the SPI FSM.
+- `LP_SPI_STATE_RX_ACK`: Constant defining the data receive acknowledge state of the SPI FSM.
+- `wCSPosedge`: Internal wire indicating the positive edge of the chip select signal.
+- `wCSNegedge`: Internal wire indicating the negative edge of the chip select signal.
+- `wSCKPosedge`: Internal wire indicating the positive edge of the synchronous clock signal.
+- `wSCKNegedge`: Internal wire indicating the negative edge of the synchronous clock signal.
+- `rCS_f`: Internal register used for filtering the chip select signal.
+- `rSCK_f`: Internal register used for filtering the synchronous clock signal.
+- `rCurState`: Internal register holding the current state of the SPI FSM.
+- `rNxtState`: Internal register holding the next state of the SPI FSM.
+- `rCounter`: Internal register used for counting data bits during SPI transactions.
+- `rCounterDone`: Internal register indicating when the SPI transaction is complete.
+- `rRWType`: Internal register holding the read/write type of the current SPI transaction.
+- `rRXDataValid`: Internal register indicating that RXData is valid.
+- `rRXAddrValid`: Internal register indicating that RXAddr is valid.
+- `rRXAddr`: Internal register holding the received address.
+- `rRXData`: Internal register holding the received data.
+- `rTXData`: Internal register holding the data to be transmitted over SPI.
+- `rMISO`: Internal register holding the value of the MISO signal.
+- `rRXAck`: Internal register holding the value of the RXAck signal
+
 ## Timing
 
 This SPI slave module is designed in Verilog with 1-bit read/write flag bits, 16-bit address bits and 32-bit data bits, and is verified using UVM.
@@ -102,3 +154,15 @@ The timing diagram for **writing data** is shown in the following figure.
 The timing diagram for **reading data** is shown in the following figure.
 
 ![image](https://user-images.githubusercontent.com/3644544/234032563-a6d8164d-6ff4-40ed-acf7-2965b4f6f3ff.png)
+
+## License
+
+This project is licensed under the GNU General Public License v3.0. The full text of the license can be found in the [LICENSE](LICENSE) file.
+
+## Acknowledgments
+
+We would like to express our gratitude to all contributors who have made this project possible. Their dedication and hard work are greatly appreciated.
+
+## Conclusion
+
+In conclusion, this project is a great example of how a team can work together to create a useful and practical tool. We hope that it will be helpful to others in the community and encourage everyone to contribute and make it even better.
